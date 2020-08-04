@@ -19,6 +19,19 @@ Vue.use(VueSegment, {
 });
 ```
 
+## Option Identity
+
+add this on your App.vue file
+```js
+created(){
+  this.$segment.identity({shopId}, {
+    name: "FullName_account",
+    email: "email_account",
+    plan: "premium_account"
+  })
+}
+```
+
 ## Option Route track
 
 put the name attribute in each route and add your router to the vue-segment initialization
