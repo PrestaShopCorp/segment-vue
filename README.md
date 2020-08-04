@@ -2,6 +2,10 @@
 
 Vue plugin for Segment
 
+> Vue.js plugin for Segment
+
+[Segment Analytics.js Documentation](https://segment.com/docs/sources/website/analytics.js/)
+
 ## Requirements
 
 Vue ^2.0.0
