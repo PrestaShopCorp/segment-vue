@@ -41,14 +41,16 @@ handleClick(){
 }
 ```
 
-## Option Route track
+## Options 
+ 
+### Option Route track
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
 ```js
 export default {
   path: "dashboard",
-  name: "dashboard",
+  name: "dashboard", //Set name on each route
   component: DashboardApp,
 };
 
@@ -57,3 +59,15 @@ Vue.use(VueSegment, {
   router
 })
 ```
+### Option Page Categorie
+
+put the name attribute in each route and add your router to the vue-segment initialization
+
+```js
+Vue.use(VueSegment, {
+  id: 'XXXXX',
+  router,
+  pageCategorie: "ps_metrics_"
+})
+```
+
