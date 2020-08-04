@@ -19,7 +19,7 @@ Vue.use(VueSegment, {
 });
 ```
 
-## Option Identity
+## Identity
 
 add this on your App.vue file
 ```js
@@ -29,6 +29,15 @@ created(){
     email: "email_account",
     plan: "premium_account"
   })
+}
+```
+
+## Track
+
+add this on each method click
+```js
+handleClick(){
+  this.$segment.track(NAME_YOUR_TRACK)
 }
 ```
 
