@@ -1,0 +1,11 @@
+### JetBrains ###
+.idea
+### VScode ###
+.vscode
+### Node ###
+node_modules
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
