@@ -7,7 +7,7 @@ Vue plugin for Segment
 Vue ^2.0.0
 
 ```bash
-npm install --save-dev vue-segment
+npm install vue-segment
 ```
 
 ```js
