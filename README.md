@@ -11,7 +11,7 @@ Vue plugin for Segment
 Vue ^2.0.0
 
 ```bash
-npm install vue-segment
+npm install @prestashopcorp/segment-vue
 ```
 
 ```js
