@@ -19,12 +19,12 @@ Vue.use(VueSegment, {
 });
 ```
 
-## Identity
+## Identify
 
 add this on your App.vue file
 ```js
 created(){
-  this.$segment.identity({shopId}, {
+  this.$segment.identify({shopId}, {
     name: "FullName_account",
     email: "email_account",
     plan: "premium_account"
