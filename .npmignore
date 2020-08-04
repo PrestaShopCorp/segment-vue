@@ -1,0 +1,8 @@
+.idea
+config
+node_modules
+.DS_Store
+.AppleDouble
+.LSOverride
+.vscode
+src
