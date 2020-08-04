@@ -16,11 +16,13 @@ function install (Vue, options = {}) {
   // Page tracking
   if (config.router !== undefined) {
     config.router.afterEach((to, from) => {
-      // Make a page call for each navigation event
-      window.analytics.page(config.pageCategory, to.name || '', {
-        path: to.fullPath,
-        referrer: from.fullPath
-      })
+      if (!to.exclude) {
+        // Make a page call for each navigation event
+        window.analytics.page(config.pageCategory, to.name || '', {
+          path: to.fullPath,
+          referrer: from.fullPath
+        }) 
+      }
     })
   }
 

@@ -1,5 +1,5 @@
 /*!
- * segment-vue v1.0.0
+ * segment-vue v1.1.0
  * (c) 2020 Mathieu Roux
  * Released under the MIT License.
  */
@@ -58,7 +58,7 @@
     };
 
     // Add a version to keep track of what's in the wild.
-    analytics.SNIPPET_VERSION = '4.0.0';
+    analytics.SNIPPET_VERSION = '4.1.0';
 
     // For each of our methods, generate a queueing stub.
     var _iteratorNormalCompletion = true;
@@ -135,11 +135,13 @@
     // Page tracking
     if (config.router !== undefined) {
       config.router.afterEach(function (to, from) {
-        // Make a page call for each navigation event
-        window.analytics.page(config.pageCategory, to.name || '', {
-          path: to.fullPath,
-          referrer: from.fullPath
-        });
+        if (!to.exclude) {
+          // Make a page call for each navigation event
+          window.analytics.page(config.pageCategory, to.name || '', {
+            path: to.fullPath,
+            referrer: from.fullPath
+          });
+        }
       });
     }
 
