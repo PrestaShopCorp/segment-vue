@@ -1,5 +1,5 @@
 {
-  "name": "segment-vue",
+  "name": "@prestashopcorp/segment-vue",
   "version": "1.1.0",
   "description": "plugin vue for segment",
   "main": "dist/segment-vue.js",
@@ -7,13 +7,10 @@
     "build": "node config/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "Mathieu Roux",
-    "email": "mathieu.roux@prestashop.com"
-  },
+  "author": "Mathieu Roux <mathieu.roux@prestashop.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/PrestaShopCorp/segment-vue"
+    "url": "git+https://github.com/PrestaShopCorp/segment-vue.git"
   },
   "license": "MIT",
   "devDependencies": {
@@ -28,8 +25,11 @@
     "rollup": "~1.31.0",
     "rollup-plugin-babel": "~3.0.7"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/@PrestaShopCorp" },
   "dependencies": {
     "load-script": "^1.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/PrestaShopCorp/segment-vue/issues"
+  },
+  "homepage": "https://github.com/PrestaShopCorp/segment-vue#readme"
 }
