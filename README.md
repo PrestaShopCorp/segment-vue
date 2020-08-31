@@ -71,7 +71,7 @@ put the name attribute in each route and add your router to the vue-segment init
 Vue.use(VueSegment, {
   id: 'XXXXX',
   router,
-  pageCategorie: "ps_metrics_"
+  pageCategory: "ps_metrics_"
 })
 ```
 
