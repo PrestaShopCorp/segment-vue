@@ -63,7 +63,23 @@ Vue.use(VueSegment, {
   router
 })
 ```
-### Option Page Categorie
+### Option exclude route
+
+```js
+export default {
+  name: "activity",
+  path: "activity",
+  exclude: true,  // <= add this key in your route object, true to exclude, false to track
+  component: () =>
+    import(
+      /* webpackChunkName: "dashboardActivity" */ "@/core/dashboard/pages/ActivityApp"
+    ),
+  redirect: "activity/revenue",
+  children: [RevenueRouter, OrderRouter, ConversionRouter, VisitRouter],
+};
+
+
+### Option Page Category
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
