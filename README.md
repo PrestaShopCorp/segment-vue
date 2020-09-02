@@ -61,8 +61,9 @@ export default {
 Vue.use(VueSegment, {
   id: 'XXXXX',
   router
-})
+});
 ```
+
 ### Option exclude route
 
 ```js
@@ -77,7 +78,7 @@ export default {
   redirect: "activity/revenue",
   children: [RevenueRouter, OrderRouter, ConversionRouter, VisitRouter],
 };
-
+```
 
 ### Option Page Category
 
@@ -88,6 +89,6 @@ Vue.use(VueSegment, {
   id: 'XXXXX',
   router,
   pageCategory: "ps_metrics_"
-})
+});
 ```
 
