@@ -135,7 +135,7 @@
     // Page tracking
     if (config.router !== undefined) {
       config.router.afterEach(function (to, from) {
-        if (!to.exclude) {
+        if (!to.exclude || !Object.hasOwnProperty(exclude)) {
           // Make a page call for each navigation event
           window.analytics.page(config.pageCategory, to.name || '', {
             path: to.fullPath,
