@@ -70,7 +70,7 @@ Vue.use(VueSegment, {
 export default {
   name: "activity",
   path: "activity",
-  exclude: true,  // <= add this key in your route object, true to exclude, false to track
+  meta: {exclude: true},  // <= add this key in your route object, true to exclude, false to track
   component: () =>
     import(
       /* webpackChunkName: "dashboardActivity" */ "@/core/dashboard/pages/ActivityApp"
