@@ -11,7 +11,7 @@ Vue plugin for Segment
 Vue ^2.0.0
 
 ```bash
-npm install vue-segment
+npm install @prestashopcorp/segment-vue
 ```
 
 ```js
@@ -71,7 +71,7 @@ put the name attribute in each route and add your router to the vue-segment init
 Vue.use(VueSegment, {
   id: 'XXXXX',
   router,
-  pageCategorie: "ps_metrics_"
+  pageCategory: "ps_metrics_"
 })
 ```
 
