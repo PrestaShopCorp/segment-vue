@@ -52,7 +52,7 @@ handleClick(){
 
 ## Options 
  
-### Option Route track
+### route track option
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
@@ -69,7 +69,7 @@ Vue.use(VueSegment, {
 });
 ```
 
-### Option exclude route
+### exclude route option
 
 ```js
 export default {
@@ -85,7 +85,7 @@ export default {
 };
 ```
 
-### Option Page Category
+### page category option
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
