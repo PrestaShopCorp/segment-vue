@@ -42,7 +42,7 @@ add this on each method click
 ```js
 handleClick(){
   this.$segment.track(NAME_YOUR_TRACK, 
-  //optional property
+  //optional properties
   { 
     name: "it's name of your track",
     category: "ps_metrics",
