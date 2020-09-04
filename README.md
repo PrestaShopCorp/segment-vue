@@ -44,7 +44,7 @@ handleClick(){
   this.$segment.track(NAME_YOUR_TRACK, 
   //optional properties
   { 
-    name: "it's name of your track",
+    name: "it's your track name",
     category: "ps_metrics",
   })
 }
