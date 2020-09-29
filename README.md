@@ -16,9 +16,9 @@ npm install @prestashopcorp/segment-vue
 
 ```js
 import Vue from 'vue'
-import VueSegment from 'vue-segment'
+import SegmentVue from '@prestashopcorp/segment-vue'
 
-Vue.use(VueSegment, {
+Vue.use(SegmentVue, {
   id: 'XXXXX',
 });
 ```
@@ -63,7 +63,7 @@ export default {
   component: DashboardApp,
 };
 
-Vue.use(VueSegment, {
+Vue.use(SegmentVue, {
   id: 'XXXXX',
   router
 });
@@ -90,7 +90,7 @@ export default {
 put the name attribute in each route and add your router to the vue-segment initialization
 
 ```js
-Vue.use(VueSegment, {
+Vue.use(SegmentVue, {
   id: 'XXXXX',
   router,
   pageCategory: "ps_metrics_"
