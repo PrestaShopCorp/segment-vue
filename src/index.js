@@ -30,16 +30,18 @@ function install(Vue, options = {}) {
   }
 
   // Setup instance access
-  Object.defineProperty(Vue, "$segment", {
-    get() {
-      return analytics;
-    },
-  });
-  Object.defineProperty(Vue.prototype, "$segment", {
-    get() {
-      return analytics;
-    },
-  });
+  if (!window.analytics) {
+    Object.defineProperty(Vue, "$segment", {
+      get() {
+        return analytics;
+      },
+    });
+    Object.defineProperty(Vue.prototype, "$segment", {
+      get() {
+        return analytics;
+      },
+    });
+  }
 }
 
 export default { install };
