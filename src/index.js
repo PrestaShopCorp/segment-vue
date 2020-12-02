@@ -1,38 +1,45 @@
-import init from './init'
+import init from "./init";
 
 /**
  * Vue installer
  * @param  {Vue instance} Vue
  * @param  {Object} [options={}]
  */
-function install (Vue, options = {}) {
-  const config = Object.assign({
-    debug: false,
-    pageCategory: '',
-  }, options)
+function install(Vue, options = {}) {
+  const config = Object.assign(
+    {
+      debug: false,
+      pageCategory: "",
+    },
+    options
+  );
 
-  let analytics = init(config, () => {})
-  
+  let analytics = init(config, () => {});
+
   // Page tracking
   if (config.router !== undefined) {
     config.router.afterEach((to, from) => {
-      if (!to.exclude) {
+      if (!to.meta.exclude) {
         // Make a page call for each navigation event
-        window.analytics.page(config.pageCategory, to.name || '', {
+        analytics.page(config.pageCategory, to.name || "", {
           path: to.fullPath,
-          referrer: from.fullPath
-        }) 
+          referrer: from.fullPath,
+        });
       }
-    })
+    });
   }
 
   // Setup instance access
-  Object.defineProperty(Vue, '$segment', {
-    get () { return window.analytics }
-  })
-  Object.defineProperty(Vue.prototype, '$segment', {
-    get () { return window.analytics }
-  })
+  Object.defineProperty(Vue, "$segment", {
+    get() {
+      return analytics;
+    },
+  });
+  Object.defineProperty(Vue.prototype, "$segment", {
+    get() {
+      return analytics;
+    },
+  });
 }
 
-export default { install }
+export default { install };
