@@ -1,8 +1,8 @@
 {
   "name": "@prestashopcorp/segment-vue",
-  "version": "1.2.1",
+  "version": "1.2.4",
   "description": "plugin vue for segment",
-  "main": "dist/segment-vue.js",
+  "main": "dist/@prestashopcorp/segment-vue.js",
   "scripts": {
     "build": "node config/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"

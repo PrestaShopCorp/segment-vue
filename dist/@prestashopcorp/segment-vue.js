@@ -1,5 +1,5 @@
 /*!
- * @prestashopcorp/segment-vue v1.2.1
+ * @prestashopcorp/segment-vue v1.2.4
  * (c) 2020 undefined
  * Released under the MIT License.
  */
