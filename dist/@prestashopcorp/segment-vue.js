@@ -1,6 +1,6 @@
 /*!
- * @prestashopcorp/segment-vue v1.2.4
- * (c) 2020 undefined
+ * @prestashopcorp/segment-vue v1.2.5
+ * (c) 2021 undefined
  * Released under the MIT License.
  */
 (function (global, factory) {
@@ -149,12 +149,12 @@
     if (!window.analytics) {
       Object.defineProperty(Vue, "$segment", {
         get: function get() {
-          return analytics;
+          return window.analytics;
         }
       });
       Object.defineProperty(Vue.prototype, "$segment", {
         get: function get() {
-          return analytics;
+          return windows.analytics;
         }
       });
     }
