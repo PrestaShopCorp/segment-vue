@@ -38,7 +38,7 @@ function install(Vue, options = {}) {
     });
     Object.defineProperty(Vue.prototype, "$segment", {
       get() {
-        return windows.analytics;
+        return window.analytics;
       },
     });
   }
