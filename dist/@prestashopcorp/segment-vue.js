@@ -1,5 +1,5 @@
 /*!
- * @prestashopcorp/segment-vue v1.2.5
+ * @prestashopcorp/segment-vue v1.2.8
  * (c) 2021 undefined
  * Released under the MIT License.
  */
@@ -58,7 +58,7 @@
     };
 
     // Add a version to keep track of what's in the wild.
-    analytics.SNIPPET_VERSION = "4.1.0";
+    analytics.SNIPPET_VERSION = "4.13.1";
 
     // For each of our methods, generate a queueing stub.
     var _iteratorNormalCompletion = true;
@@ -137,7 +137,7 @@
       config.router.afterEach(function (to, from) {
         if (!to.meta.exclude) {
           // Make a page call for each navigation event
-          analytics.page(config.pageCategory, to.name || "", {
+          window.analytics.page(config.pageCategory, to.name || "", {
             path: to.fullPath,
             referrer: from.fullPath
           });
@@ -154,7 +154,7 @@
       });
       Object.defineProperty(Vue.prototype, "$segment", {
         get: function get() {
-          return windows.analytics;
+          return window.analytics;
         }
       });
     }
