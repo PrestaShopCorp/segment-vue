@@ -33,12 +33,12 @@ function install(Vue, options = {}) {
   if (!window.analytics) {
     Object.defineProperty(Vue, "$segment", {
       get() {
-        return analytics;
+        return window.analytics;
       },
     });
     Object.defineProperty(Vue.prototype, "$segment", {
       get() {
-        return analytics;
+        return windows.analytics;
       },
     });
   }
