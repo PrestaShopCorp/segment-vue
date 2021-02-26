@@ -30,7 +30,7 @@ function install(Vue, options = {}) {
   }
 
   // Setup instance access
-  if (window.analytics) {
+  if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
     Object.defineProperty(Vue, "$segment", {
       get() {
         return window.analytics;

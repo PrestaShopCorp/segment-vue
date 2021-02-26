@@ -1,5 +1,5 @@
 /*!
- * @prestashopcorp/segment-vue v1.2.8
+ * @prestashopcorp/segment-vue v1.2.10
  * (c) 2021 undefined
  * Released under the MIT License.
  */
@@ -146,7 +146,7 @@
     }
 
     // Setup instance access
-    if (!window.analytics) {
+    if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
       Object.defineProperty(Vue, "$segment", {
         get: function get() {
           return window.analytics;
