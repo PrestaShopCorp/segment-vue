@@ -1,5 +1,5 @@
 import init from "./init";
-
+import { isVue2 } from 'vue-demi';
 /**
  * Vue installer
  * @param  {Vue instance} Vue
@@ -29,19 +29,40 @@ function install(Vue, options = {}) {
     });
   }
 
-  // Setup instance access
-  if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-    Object.defineProperty(Vue, "$segment", {
+  if(isVue2 && window.analytics) {
+    if(!Vue.hasOwnProperty($segment) && !Vue.prototype.hasOwnProperty("$segment")) {
+      Object.defineProperty(Vue, "$segment", {
+        get() {
+          return window.analytics;
+        },
+      });
+      Object.defineProperty(Vue.prototype, "$segment", {
+        get() {
+          return window.analytics;
+        },
+      });
+    }
+  } else {
+    Vue.provide('$segment', window.analytics);
+    Object.defineProperties(Vue.config.globalProperties, "$segment", {
       get() {
-        return window.analytics;
-      },
-    });
-    Object.defineProperty(Vue.prototype, "$segment", {
-      get() {
-        return window.analytics;
-      },
-    });
+        return window.analytics
+      }
+    })
   }
+  // Setup instance access
+  // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
+  //   Object.defineProperty(Vue, "$segment", {
+  //     get() {
+  //       return window.analytics;
+  //     },
+  //   });
+  //   Object.defineProperty(Vue.prototype, "$segment", {
+  //     get() {
+  //       return window.analytics;
+  //     },
+  //   });
+  // }
 }
 
 export default { install };

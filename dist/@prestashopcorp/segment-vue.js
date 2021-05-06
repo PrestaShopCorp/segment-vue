@@ -1,13 +1,13 @@
 /*!
- * @prestashopcorp/segment-vue v1.2.10
+ * @prestashopcorp/segment-vue v2.0.0
  * (c) 2021 undefined
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('load-script')) :
-  typeof define === 'function' && define.amd ? define(['load-script'], factory) :
-  (global = global || self, global['@prestashopcorpSegmentVue'] = factory(global.loadScript));
-}(this, (function (loadScript) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('load-script'), require('vue-demi')) :
+  typeof define === 'function' && define.amd ? define(['load-script', 'vue-demi'], factory) :
+  (global = global || self, global['@prestashopcorpSegmentVue'] = factory(global.loadScript, global.vueDemi));
+}(this, (function (loadScript, vueDemi) { 'use strict';
 
   loadScript = loadScript && loadScript.hasOwnProperty('default') ? loadScript['default'] : loadScript;
 
@@ -145,19 +145,40 @@
       });
     }
 
-    // Setup instance access
-    if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-      Object.defineProperty(Vue, "$segment", {
-        get: function get() {
-          return window.analytics;
-        }
-      });
-      Object.defineProperty(Vue.prototype, "$segment", {
+    if (vueDemi.isVue2 && window.analytics) {
+      if (!Vue.hasOwnProperty($segment) && !Vue.prototype.hasOwnProperty("$segment")) {
+        Object.defineProperty(Vue, "$segment", {
+          get: function get() {
+            return window.analytics;
+          }
+        });
+        Object.defineProperty(Vue.prototype, "$segment", {
+          get: function get() {
+            return window.analytics;
+          }
+        });
+      }
+    } else {
+      Vue.provide('$segment', window.analytics);
+      Object.defineProperties(Vue.config.globalProperties, "$segment", {
         get: function get() {
           return window.analytics;
         }
       });
     }
+    // Setup instance access
+    // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
+    //   Object.defineProperty(Vue, "$segment", {
+    //     get() {
+    //       return window.analytics;
+    //     },
+    //   });
+    //   Object.defineProperty(Vue.prototype, "$segment", {
+    //     get() {
+    //       return window.analytics;
+    //     },
+    //   });
+    // }
   }
 
   var index = { install: install };
