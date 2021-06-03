@@ -1,5 +1,18 @@
 import init from "./init";
-import { isVue2 } from 'vue-demi';
+import { isVue2, inject, provide } from 'vue-demi';
+const SegmentSymbol = Symbol("segment");
+
+
+export const useSegment = () => {
+  const segment = inject(SegmentSymbol);
+  if(!segment){
+    throw new Error("Segment not provided");
+  }
+  return segment;
+}
+
+
+
 /**
  * Vue installer
  * @param  {Vue instance} Vue
@@ -43,7 +56,7 @@ const install = (Vue, options = {}) => {
       });
     }
   } else {
-    Vue.provide('$segment', window.analytics);
+    provide(SegmentSymbol, window.analytics);
     Vue.config.globalProperties.$segment = () => window.analytics;
   }
   // Setup instance access
@@ -60,5 +73,6 @@ const install = (Vue, options = {}) => {
   //   });
   // }
 }
+
 
 export default { install };
