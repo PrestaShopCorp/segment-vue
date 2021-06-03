@@ -1,14 +1,19 @@
 import init from "./init";
-import { isVue2, inject, provide } from 'vue-demi';
-const SegmentSymbol = Symbol("segment");
+import { isVue2, inject, provide, getCurrentInstance } from 'vue-demi';
 
 
 export const useSegment = () => {
-  const segment = inject(SegmentSymbol);
-  if(!segment){
+  const {
+    appContext: {
+      config: {
+        globalProperties: { $segment },
+      },
+    },
+  } = getCurrentInstance();
+  if(!$segment){
     throw new Error("Segment not provided");
   }
-  return segment;
+  return $segment();
 }
 
 
@@ -56,7 +61,7 @@ const install = (Vue, options = {}) => {
       });
     }
   } else {
-    provide(SegmentSymbol, window.analytics);
+    provide("$segment", window.analytics);
     Vue.config.globalProperties.$segment = () => window.analytics;
   }
   // Setup instance access
