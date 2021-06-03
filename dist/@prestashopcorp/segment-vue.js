@@ -160,11 +160,9 @@
       }
     } else {
       Vue.provide('$segment', window.analytics);
-      Object.defineProperties(Vue.config.globalProperties, "$segment", {
-        get: function get() {
-          return window.analytics;
-        }
-      });
+      Vue.config.globalProperties.$segment = function () {
+        return window.analytics;
+      };
     }
     // Setup instance access
     // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {

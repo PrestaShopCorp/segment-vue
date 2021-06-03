@@ -5,7 +5,7 @@ import { isVue2 } from 'vue-demi';
  * @param  {Vue instance} Vue
  * @param  {Object} [options={}]
  */
-function install(Vue, options = {}) {
+const install = (Vue, options = {}) => {
   const config = Object.assign(
     {
       debug: false,
@@ -44,11 +44,7 @@ function install(Vue, options = {}) {
     }
   } else {
     Vue.provide('$segment', window.analytics);
-    Object.defineProperties(Vue.config.globalProperties, "$segment", {
-      get() {
-        return window.analytics
-      }
-    })
+    Vue.config.globalProperties.$segment = () => window.analytics;
   }
   // Setup instance access
   // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
