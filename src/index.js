@@ -47,8 +47,8 @@ const install = (Vue, options = {}) => {
     });
   }
 
-  if(isVue2 && window.analytics) {
-    if(!Vue.hasOwnProperty($segment) && !Vue.prototype.hasOwnProperty("$segment")) {
+  if(isVue2) {
+    if(!Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
       Object.defineProperty(Vue, "$segment", {
         get() {
           return window.analytics;
