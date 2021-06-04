@@ -1,13 +1,13 @@
 /*!
- * @prestashopcorp/segment-vue v2.0.0
+ * @prestashopcorp/segment-vue v2.1.5
  * (c) 2021 undefined
  * Released under the MIT License.
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('load-script'), require('vue-demi')) :
-  typeof define === 'function' && define.amd ? define(['load-script', 'vue-demi'], factory) :
-  (global = global || self, global['@prestashopcorpSegmentVue'] = factory(global.loadScript, global.vueDemi));
-}(this, (function (loadScript, vueDemi) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('load-script'), require('vue-demi')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'load-script', 'vue-demi'], factory) :
+  (global = global || self, factory(global['@prestashopcorpSegmentVue'] = {}, global.loadScript, global.vueDemi));
+}(this, (function (exports, loadScript, vueDemi) { 'use strict';
 
   loadScript = loadScript && loadScript.hasOwnProperty('default') ? loadScript['default'] : loadScript;
 
@@ -117,12 +117,22 @@
     return window.analytics;
   }
 
+  var useSegment = function useSegment() {
+    var _getCurrentInstance = vueDemi.getCurrentInstance(),
+        $segment = _getCurrentInstance.appContext.config.globalProperties.$segment;
+
+    if (!$segment) {
+      throw new Error("Segment not provided");
+    }
+    return $segment();
+  };
+
   /**
    * Vue installer
    * @param  {Vue instance} Vue
    * @param  {Object} [options={}]
    */
-  function install(Vue) {
+  var install = function install(Vue) {
     var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
     var config = Object.assign({
@@ -145,8 +155,8 @@
       });
     }
 
-    if (vueDemi.isVue2 && window.analytics) {
-      if (!Vue.hasOwnProperty($segment) && !Vue.prototype.hasOwnProperty("$segment")) {
+    if (vueDemi.isVue2) {
+      if (!Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
         Object.defineProperty(Vue, "$segment", {
           get: function get() {
             return window.analytics;
@@ -159,7 +169,7 @@
         });
       }
     } else {
-      Vue.provide('$segment', window.analytics);
+      vueDemi.provide("$segment", window.analytics);
       Vue.config.globalProperties.$segment = function () {
         return window.analytics;
       };
@@ -177,10 +187,13 @@
     //     },
     //   });
     // }
-  }
+  };
 
   var index = { install: install };
 
-  return index;
+  exports.default = index;
+  exports.useSegment = useSegment;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
