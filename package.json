@@ -1,6 +1,6 @@
 {
   "name": "@prestashopcorp/segment-vue",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "plugin vue for segment",
   "main": "dist/@prestashopcorp/segment-vue.js",
   "scripts": {
