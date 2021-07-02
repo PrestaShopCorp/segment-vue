@@ -72,6 +72,7 @@ handleClick(){
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
+### Vue 2
 ```js
 export default {
   path: "dashboard",
@@ -80,6 +81,20 @@ export default {
 };
 
 Vue.use(SegmentVue, {
+  id: 'XXXXX',
+  router
+});
+```
+
+### Vue 3
+```js
+export default {
+  path: "dashboard",
+  name: "dashboard", //Set name on each route
+  component: DashboardApp,
+};
+
+app.use(SegmentVue, {
   id: 'XXXXX',
   router
 });
@@ -105,8 +120,18 @@ export default {
 
 put the name attribute in each route and add your router to the vue-segment initialization
 
+### Vue 2
 ```js
 Vue.use(SegmentVue, {
+  id: 'XXXXX',
+  router,
+  pageCategory: "ps_metrics_"
+});
+```
+
+### Vue 3
+```js
+app.use(SegmentVue, {
   id: 'XXXXX',
   router,
   pageCategory: "ps_metrics_"
