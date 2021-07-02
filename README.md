@@ -8,13 +8,14 @@ Vue plugin for Segment
 
 ## Requirements
 
-Vue ^2.0.0
+Vue ^2.x or Vue ^3.x
 
 ```bash
 npm install @prestashopcorp/segment-vue
 ```
-
+### Vue 2
 ```js
+
 import Vue from 'vue'
 import SegmentVue from '@prestashopcorp/segment-vue'
 
@@ -23,9 +24,23 @@ Vue.use(SegmentVue, {
 });
 ```
 
+### Vue 3
+
+```js
+
+import { createApp } from "vue";
+import SegmentVue from '@prestashopcorp/segment-vue'
+
+const app = createApp(App)
+
+app.use(SegmentVue, {
+  id: 'XXXXX',
+});
+```
+
 ## Identify
 
-add this on your App.vue file
+add this on your layout file
 ```js
 created(){
   this.$segment.identify({shopId}, {
@@ -35,6 +50,7 @@ created(){
   })
 }
 ```
+
 
 ## Track
 
