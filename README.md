@@ -138,3 +138,41 @@ app.use(SegmentVue, {
 });
 ```
 
+### instance name option
+
+put the instance name at the vue-segment initialization to create a unique instance of your segment
+
+### Vue 2
+```js
+Vue.use(SegmentVue, {
+  id: 'XXXXX',
+  instanceName: '$myInstanceName',
+});
+
+handleClick(){
+  this.$myInstanceName.track(NAME_YOUR_TRACK,
+    //optional properties
+    {
+      name: "it's your track name",
+      category: "ps_metrics",
+    })
+}
+```
+
+### Vue 3
+```js
+app.use(SegmentVue, {
+  id: 'XXXXX',
+  instanceName: '$myInstanceName',
+});
+
+handleClick(){
+  this.$myInstanceName.track(NAME_YOUR_TRACK,
+    //optional properties
+    {
+      name: "it's your track name",
+      category: "ps_metrics",
+    })
+}
+```
+
