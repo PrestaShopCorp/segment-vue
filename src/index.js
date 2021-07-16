@@ -6,7 +6,7 @@ export const useSegment = () => {
   const {
     appContext: {
       config: {
-        globalProperties: { $segment },
+        globalProperties: { [config.instanceName]: $segment },
       },
     },
   } = getCurrentInstance();
@@ -40,7 +40,7 @@ const install = (Vue, options = {}) => {
     config.router.afterEach((to, from) => {
       if (!to.meta.exclude) {
         // Make a page call for each navigation event
-        window.analytics.page(config.pageCategory, to.name || "", {
+        window.analytics[config.instanceName].page(config.pageCategory, to.name || "", {
           path: to.fullPath,
           referrer: from.fullPath,
         });
@@ -52,12 +52,12 @@ const install = (Vue, options = {}) => {
     if(!Vue.hasOwnProperty(config.instanceName) && !Vue.prototype.hasOwnProperty(config.instanceName)) {
       Object.defineProperty(Vue, config.instanceName, {
         get() {
-          return window.analytics;
+          return window.analytics[config.instanceName];
         },
       });
       Object.defineProperty(Vue.prototype, config.instanceName, {
         get() {
-          return window.analytics;
+          return window.analytics[config.instanceName];
         },
       });
     }

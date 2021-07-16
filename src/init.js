@@ -7,7 +7,8 @@ export default function init(config, callback) {
   }
 
   // Create a queue, but don't obliterate an existing one!
-  var analytics = (window.analytics = window.analytics || []);
+  window.analytics = window.analytics || [];
+  var analytics = (window.analytics[config.instanceName] = window.analytics[config.instanceName] || []);
 
   // If the real analytics.js is already on the page return.
   if (analytics.initialize) return;
