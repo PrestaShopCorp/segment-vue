@@ -62,8 +62,8 @@ const install = (Vue, options = {}) => {
       });
     }
   } else {
-    provide("$segment", window.analytics);
-    Vue.config.globalProperties.$segment = () => window.analytics;
+    provide(config.instanceName, window.analytics);
+    Vue.config.globalProperties[config.instanceName] = () => window.analytics;
   }
   // Setup instance access
   // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {

@@ -170,8 +170,8 @@
         });
       }
     } else {
-      vueDemi.provide("$segment", window.analytics);
-      Vue.config.globalProperties.$segment = function () {
+      vueDemi.provide(config.instanceName, window.analytics);
+      Vue.config.globalProperties[config.instanceName] = function () {
         return window.analytics;
       };
     }
