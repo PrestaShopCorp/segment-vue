@@ -1,5 +1,5 @@
 /*!
- * @prestashopcorp/segment-vue v2.1.5
+ * @prestashopcorp/segment-vue v2.1.6
  * (c) 2021 undefined
  * Released under the MIT License.
  */
@@ -137,7 +137,8 @@
 
     var config = Object.assign({
       debug: false,
-      pageCategory: ""
+      pageCategory: "",
+      instanceName: "$segment"
     }, options);
 
     var analytics = init(config, function () {});
@@ -156,13 +157,13 @@
     }
 
     if (vueDemi.isVue2) {
-      if (!Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-        Object.defineProperty(Vue, "$segment", {
+      if (!Vue.hasOwnProperty(config.instanceName) && !Vue.prototype.hasOwnProperty(config.instanceName)) {
+        Object.defineProperty(Vue, config.instanceName, {
           get: function get() {
             return window.analytics;
           }
         });
-        Object.defineProperty(Vue.prototype, "$segment", {
+        Object.defineProperty(Vue.prototype, config.instanceName, {
           get: function get() {
             return window.analytics;
           }

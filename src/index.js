@@ -28,6 +28,7 @@ const install = (Vue, options = {}) => {
     {
       debug: false,
       pageCategory: "",
+      instanceName: "$segment",
     },
     options
   );
@@ -48,13 +49,13 @@ const install = (Vue, options = {}) => {
   }
 
   if(isVue2) {
-    if(!Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-      Object.defineProperty(Vue, "$segment", {
+    if(!Vue.hasOwnProperty(config.instanceName) && !Vue.prototype.hasOwnProperty(config.instanceName)) {
+      Object.defineProperty(Vue, config.instanceName, {
         get() {
           return window.analytics;
         },
       });
-      Object.defineProperty(Vue.prototype, "$segment", {
+      Object.defineProperty(Vue.prototype, config.instanceName, {
         get() {
           return window.analytics;
         },
