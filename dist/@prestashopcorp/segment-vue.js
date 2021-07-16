@@ -18,7 +18,8 @@
     }
 
     // Create a queue, but don't obliterate an existing one!
-    var analytics = window.analytics = window.analytics || [];
+    window.analytics = window.analytics || [];
+    var analytics = window.analytics[config.instanceName] = window.analytics[config.instanceName] || [];
 
     // If the real analytics.js is already on the page return.
     if (analytics.initialize) return;
@@ -119,7 +120,7 @@
 
   var useSegment = function useSegment() {
     var _getCurrentInstance = vueDemi.getCurrentInstance(),
-        $segment = _getCurrentInstance.appContext.config.globalProperties.$segment;
+        $segment = _getCurrentInstance.appContext.config.globalProperties[config.instanceName];
 
     if (!$segment) {
       throw new Error("Segment not provided");
@@ -148,7 +149,7 @@
       config.router.afterEach(function (to, from) {
         if (!to.meta.exclude) {
           // Make a page call for each navigation event
-          window.analytics.page(config.pageCategory, to.name || "", {
+          window.analytics[config.instanceName].page(config.pageCategory, to.name || "", {
             path: to.fullPath,
             referrer: from.fullPath
           });
@@ -160,12 +161,12 @@
       if (!Vue.hasOwnProperty(config.instanceName) && !Vue.prototype.hasOwnProperty(config.instanceName)) {
         Object.defineProperty(Vue, config.instanceName, {
           get: function get() {
-            return window.analytics;
+            return window.analytics[config.instanceName];
           }
         });
         Object.defineProperty(Vue.prototype, config.instanceName, {
           get: function get() {
-            return window.analytics;
+            return window.analytics[config.instanceName];
           }
         });
       }
