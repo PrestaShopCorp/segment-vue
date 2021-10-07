@@ -42,6 +42,10 @@ export default function init(config, callback) {
     "once",
     "off",
     "on",
+    "addSourceMiddleware",
+    "addIntegrationMiddleware",
+    "setAnonymousId",
+    "addDestinationMiddleware",
   ];
 
   // Define a factory to create stubs. These are placeholders
@@ -66,7 +70,7 @@ export default function init(config, callback) {
   };
 
   // Add a version to keep track of what's in the wild.
-  analytics.SNIPPET_VERSION = "4.13.1";
+  analytics.SNIPPET_VERSION = "4.13.2";
 
   // For each of our methods, generate a queueing stub.
   for (let key of analytics.methods) {
