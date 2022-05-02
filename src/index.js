@@ -28,6 +28,7 @@ const install = (Vue, options = {}) => {
     {
       debug: false,
       pageCategory: "",
+      isConsentRequired: false,
     },
     options
   );
@@ -64,19 +65,6 @@ const install = (Vue, options = {}) => {
     provide("$segment", window.analytics);
     Vue.config.globalProperties.$segment = () => window.analytics;
   }
-  // Setup instance access
-  // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-  //   Object.defineProperty(Vue, "$segment", {
-  //     get() {
-  //       return window.analytics;
-  //     },
-  //   });
-  //   Object.defineProperty(Vue.prototype, "$segment", {
-  //     get() {
-  //       return window.analytics;
-  //     },
-  //   });
-  // }
 }
 
 
