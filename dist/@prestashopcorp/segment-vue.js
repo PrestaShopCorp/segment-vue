@@ -1,6 +1,6 @@
 /*!
- * @prestashopcorp/segment-vue v2.1.5
- * (c) 2021 undefined
+ * @prestashopcorp/segment-vue v2.2.0
+ * (c) 2022 undefined
  * Released under the MIT License.
  */
 (function (global, factory) {
@@ -36,7 +36,31 @@
     analytics.invoked = true;
 
     // A list of the methods in Analytics.js to stub.
-    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on"];
+    analytics.methods = ["trackSubmit", "trackClick", "trackLink", "trackForm", "pageview", "identify", "reset", "group", "track", "ready", "alias", "debug", "page", "once", "off", "on", "addSourceMiddleware", "addIntegrationMiddleware", "setAnonymousId", "addDestinationMiddleware"];
+
+    analytics.load = function (key, options) {
+      var source = "https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";
+      loadScript(source, function (error, script) {
+        if (error) {
+          console.warn("Ops! Is not possible to load Segment Analytics script");
+          return;
+        }
+
+        var poll = setInterval(function () {
+          if (!window.analytics) {
+            return;
+          }
+
+          clearInterval(poll);
+
+          // the callback is fired when window.analytics is available and before any other hit is sent
+          if (callback && typeof callback === "function") {
+            callback();
+          }
+        }, 10);
+      });
+      analytics._loadOptions = options;
+    };
 
     // Define a factory to create stubs. These are placeholders
     // for methods in Analytics.js so that you never have to wait
@@ -45,7 +69,7 @@
     analytics.factory = function (method) {
       return function () {
         var args = Array.prototype.slice.call(arguments);
-        if (config.debug === true) {
+        if (config.debug) {
           if (window.console && console.log) {
             console.log("[Segment Analytics Debug]: " + method + " method called with " + args.length + " args");
           }
@@ -58,7 +82,7 @@
     };
 
     // Add a version to keep track of what's in the wild.
-    analytics.SNIPPET_VERSION = "4.13.1";
+    analytics.SNIPPET_VERSION = "4.13.2";
 
     // For each of our methods, generate a queueing stub.
     var _iteratorNormalCompletion = true;
@@ -86,27 +110,8 @@
       }
     }
 
-    if (config.debug === false) {
-      var source = "https://cdn.segment.com/analytics.js/v1/" + config.id + "/analytics.min.js";
-      loadScript(source, function (error, script) {
-        if (error) {
-          console.warn("Ops! Is not possible to load Segment Analytics script");
-          return;
-        }
-
-        var poll = setInterval(function () {
-          if (!window.analytics) {
-            return;
-          }
-
-          clearInterval(poll);
-
-          // the callback is fired when window.analytics is available and before any other hit is sent
-          if (callback && typeof callback === "function") {
-            callback();
-          }
-        }, 10);
-      });
+    if (!config.debug) {
+      analytics.load(config.id, config.settings);
     } else {
       // Still run the callback in debug mode.
       if (callback && typeof callback === "function") {
@@ -137,7 +142,8 @@
 
     var config = Object.assign({
       debug: false,
-      pageCategory: ""
+      pageCategory: "",
+      settings: {}
     }, options);
 
     var analytics = init(config, function () {});
@@ -174,19 +180,6 @@
         return window.analytics;
       };
     }
-    // Setup instance access
-    // if (window.analytics && !Vue.hasOwnProperty("$segment") && !Vue.prototype.hasOwnProperty("$segment")) {
-    //   Object.defineProperty(Vue, "$segment", {
-    //     get() {
-    //       return window.analytics;
-    //     },
-    //   });
-    //   Object.defineProperty(Vue.prototype, "$segment", {
-    //     get() {
-    //       return window.analytics;
-    //     },
-    //   });
-    // }
   };
 
   var index = { install: install };
