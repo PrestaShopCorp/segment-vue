@@ -28,7 +28,7 @@ const install = (Vue, options = {}) => {
     {
       debug: false,
       pageCategory: "",
-      isConsentRequired: false,
+      settings: {}
     },
     options
   );

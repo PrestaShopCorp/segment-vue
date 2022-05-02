@@ -103,7 +103,7 @@ export default function init(config,callback) {
 
 
   if (!config.debug) {
-    analytics.load(config.id, config.options);
+    analytics.load(config.id, config.settings);
   } else {
     // Still run the callback in debug mode.
     if (callback && typeof callback === "function") {
