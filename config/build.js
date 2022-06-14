@@ -7,7 +7,7 @@ var pack = require('../package.json')
 async function build (dev = false) {
   const bundle = await rollup.rollup({
     input: 'src/index.js',
-    external: ['load-script'],
+    external: ['vue-demi', 'isomorphic-fetch', 'lodash/flatten', 'lodash/sortedUniqBy', 'lodash/sortBy'],
     plugins: [
       babel({
         babelrc: true

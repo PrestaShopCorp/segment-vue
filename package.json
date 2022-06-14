@@ -1,6 +1,6 @@
 {
   "name": "@prestashopcorp/segment-vue",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "plugin vue for segment",
   "main": "dist/@prestashopcorp/segment-vue.js",
   "scripts": {
@@ -29,7 +29,8 @@
     "vue-template-compiler": "2.6.12"
   },
   "dependencies": {
-    "load-script": "^1.0.0",
+    "isomorphic-fetch": "^3.0.0",
+    "lodash": "^4.17.21",
     "vue-demi": "^0.7.4"
   },
   "peerDependencies": {
