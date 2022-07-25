@@ -188,6 +188,7 @@ const conditionallyLoadAnalytics = (writeKey, destinations, isConsentRequired, s
   if(!isConsentRequired) {
     if(!wd.analytics.initialized) {
       wd.analytics.load(writeKey)
+      wd.analytics.page()
     }
     return
   }

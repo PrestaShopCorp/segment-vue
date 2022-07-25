@@ -311,6 +311,7 @@
     if (!isConsentRequired) {
       if (!wd.analytics.initialized) {
         wd.analytics.load(writeKey);
+        wd.analytics.page();
       }
       return;
     }
