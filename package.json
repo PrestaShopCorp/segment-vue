@@ -25,7 +25,6 @@
     "friendly-errors-webpack-plugin": "~1.7.0",
     "rollup": "~1.31.0",
     "rollup-plugin-babel": "~3.0.7",
-    "vue": "2.6.12",
     "vue-template-compiler": "2.6.12"
   },
   "dependencies": {
